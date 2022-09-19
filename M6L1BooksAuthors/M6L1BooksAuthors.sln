@@ -9,7 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M6L1BooksAuthors.Core", "M6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M6L1BooksAuthors.Infrastructure", "M6L1BooksAuthors.Infrastructure\M6L1BooksAuthors.Infrastructure.csproj", "{86161459-476D-483E-96E4-D8B1F75CC85F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M6L1BooksAuthors.Core.Tests", "M6L1BooksAuthors.Core.Tests\M6L1BooksAuthors.Core.Tests.csproj", "{E83699DE-3A84-43E7-B044-E1C54211D194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M6L1BooksAuthors.Core.Tests", "M6L1BooksAuthors.Core.Tests\M6L1BooksAuthors.Core.Tests.csproj", "{E83699DE-3A84-43E7-B044-E1C54211D194}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6447062-40F0-44F7-9304-8CE009B12305} = {B6447062-40F0-44F7-9304-8CE009B12305}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

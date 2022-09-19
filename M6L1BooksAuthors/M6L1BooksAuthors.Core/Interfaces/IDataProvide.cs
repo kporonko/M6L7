@@ -10,14 +10,14 @@ namespace M6L1BooksAuthors.Core.Interfaces
 {
     public interface IDataProvide
     {
-        public void AddProduct(BookAdd product);
+        public int AddProduct(BookAdd product);
 
-        public Task UpdateProductAsync(BookPut product);
+        public void UpdateProduct(BookPut product);
 
-        public Task DeleteProductAsync(BookDelete product);
+        public void DeleteProduct(BookDelete product);
 
-        public Task<Book> GetBookAsync(int id);
+        public Book? GetBook(int id);
 
-        public Task<List<Book>> GetBooksAsync();
+        public List<Book> GetBooks();
     }
 }

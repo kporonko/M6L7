@@ -25,33 +25,33 @@ namespace M6L1BooksAuthors.Controllers
         }
 
         [HttpGet("books")]
-        public async Task<List<Book>> GetBooksAsync()
+        public List<Book> GetBooks()
         {
-            return await _bookService.GetBooksAsync();
+            return _bookService.GetBooks();
         }
 
         [HttpGet("book/{id}")]
-        public async Task<Book> GetBookAsync(int id)
+        public Book GetBook(int id)
         {
-            return await _bookService.GetBookAsync(id);
+            return  _bookService.GetBook(id);
         }
 
         [HttpPost("book")]
-        public void AddProduct(BookAdd product)
+        public int AddProduct(BookAdd product)
         {
-            _bookService.AddProduct(product);
+            return _bookService.AddProduct(product);
         }
 
         [HttpPut("book")]
-        public async Task UpdateProductAsync(BookPut product)
+        public void UpdateProduct(BookPut product)
         {
-            await _bookService.UpdateProductAsync(product);
+            _bookService.UpdateProduct(product);
         }
 
         [HttpDelete("book")]
-        public async Task DeleteProductAsync(BookDelete product)
+        public void DeleteProductAsync(BookDelete product)
         {
-            await _bookService.DeleteProductAsync(product);
+             _bookService.DeleteProduct(product);
         }
     }
 }

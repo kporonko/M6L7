@@ -13,29 +13,29 @@ namespace M6L1BooksAuthors.Core.Services
             _dataProvider = dataProvider;
         }
 
-        public void AddProduct(BookAdd product)
+        public int AddProduct(BookAdd product)
         {
-            _dataProvider.AddProduct(product);
+            return _dataProvider.AddProduct(product);
         }
 
-        public async Task UpdateProductAsync(BookPut product)
+        public void UpdateProduct(BookPut product)
         {
-            _dataProvider.UpdateProductAsync(product);
+            _dataProvider.UpdateProduct(product);
         }
 
-        public async Task DeleteProductAsync(BookDelete product)
+        public void DeleteProduct(BookDelete product)
         {
-            _dataProvider.DeleteProductAsync(product);
+            _dataProvider.DeleteProduct(product);
         }
 
-        public async Task<Book> GetBookAsync(int id)
+        public Book? GetBook(int id)
         {
-            return await _dataProvider.GetBookAsync(id);
+            return _dataProvider.GetBook(id);
         }
 
-        public async Task<List<Book>> GetBooksAsync()
+        public List<Book> GetBooks()
         {
-            return await _dataProvider.GetBooksAsync();
+            return _dataProvider.GetBooks();
         }
     }
 }

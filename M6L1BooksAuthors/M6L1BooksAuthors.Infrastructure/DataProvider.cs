@@ -20,13 +20,13 @@ namespace M6L1BooksAuthors.Infrastructure
             _context = context;
         }
 
-        public void AddProduct(BookAdd product)
+        public int AddProduct(BookAdd product)
         {
             try
             {
                 using (_context)
                 {
-                    Book book = new Book { Description = product.Description, ReleaseYear = product.ReleaseYear, Title = product.Title };
+                    Book book = new Book { Description = product.Description, ReleaseYear = product.ReleaseYear, Title = product.Title, BookId =  GetLastId()};
                     for (int i = 0; i < product.Authors.Count; i++)
                     {
                         book.BooksAuthors.Add(new BookAuthor { Contribution = product.Authors[i].Contribution, Book = book, Author = new Author { Birthday = product.Authors[i].Birthday, FirstName = product.Authors[i].FirstName, LastName = product.Authors[i].LastName } });
@@ -34,20 +34,22 @@ namespace M6L1BooksAuthors.Infrastructure
                     _context.Add(book);
                     _context.SaveChanges();
                 }
-
             }
             catch (Exception)
             {
             }
+            
+            return GetLastId();
+            
         }
 
-        public async Task UpdateProductAsync(BookPut product)
+        public void UpdateProduct(BookPut product)
         {
             try
             {
                 using (_context)
                 {
-                    Book book = await _context.Books.Where(x => x.BookId == product.Id).FirstAsync();
+                    Book book = _context.Books.Where(x => x.BookId == product.Id).First();
 
                     if (book != null)
                     {
@@ -65,13 +67,13 @@ namespace M6L1BooksAuthors.Infrastructure
             }
         }
 
-        public async Task DeleteProductAsync(BookDelete product)
+        public void DeleteProduct(BookDelete product)
         {
             try
             {
                 using (_context)
                 {
-                    Book book = await _context.Books.Where(x => x.BookId == product.Id).FirstAsync();
+                    Book book = _context.Books.Where(x => x.BookId == product.Id).First();
                     _context.Remove(book);
                     _context.SaveChanges();
                 }
@@ -83,13 +85,13 @@ namespace M6L1BooksAuthors.Infrastructure
             }
         }
 
-        public async Task<Book> GetBookAsync(int id)
+        public Book GetBook(int id)
         {
             using (_context)
             {
                 try
                 {
-                    Book book = await _context.Books.Include(u => u.BooksAuthors).Where(i => i.BookId == id).FirstOrDefaultAsync();
+                    Book book = _context.Books.Include(u => u.BooksAuthors).Where(i => i.BookId == id).FirstOrDefault();
                     if (book != null)
                     {
                         return book;
@@ -105,19 +107,31 @@ namespace M6L1BooksAuthors.Infrastructure
             }
         }
 
-        public async Task<List<Book>> GetBooksAsync()
+        public List<Book> GetBooks()
         {
             using (_context)
             {
                 try
                 {
-                    List<Book> books = await _context.Books.Include(u => u.BooksAuthors).ToListAsync();
+                    List<Book> books = _context.Books.Include(u => u.BooksAuthors).ToList();
                     return books;
                 }
                 catch (Exception)
                 {
                     throw;
                 }
+            }
+        }
+        private int GetLastId()
+        {
+            using (_context)
+            {
+                if (_context.Books.ToList().Count == 0)
+                {
+                    return 0;
+                }
+                return _context.Books.ToList().Count;
+
             }
         }
     }
