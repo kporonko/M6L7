@@ -23,5 +23,7 @@
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore" Version="6.0.8" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+		<ProjectReference Include="..\M6L1BooksAuthors.Core\M6L1BooksAuthors.Core.csproj" />
 	</ItemGroup>
+
 </Project>

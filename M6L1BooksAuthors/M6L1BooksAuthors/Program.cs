@@ -4,11 +4,12 @@ using System.Text.Json.Serialization;
 using M6L1BooksAuthors.Core;
 using M6L1BooksAuthors.Core.Services;
 using M6L1BooksAuthors.Core.Interfaces;
-
+using M6L1BooksAuthors.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddTransient<IDataProvide, DataProvider>();
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
